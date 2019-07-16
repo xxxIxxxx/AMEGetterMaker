@@ -131,17 +131,15 @@ static AMEGetterMaker * _ame_getter_maker;
     NSString *underLineName=[NSString stringWithFormat:@"_%@",uName];
     
     
-    NSString *line1 = [NSString stringWithFormat:@"\n- (%@%@ *)%@{",className,childClass,uName];
-    NSString *line2 = [NSString stringWithFormat:@"\n    if(!%@){",underLineName];
-    NSString *line3 = [NSString stringWithFormat:@"\n        %@ = ({",underLineName];
-    NSString *line4 = [NSString stringWithFormat:@"\n            %@ * object = [[%@ alloc]init];",className,className];
-    NSString *line5 = [NSString stringWithFormat:@"\n            object;"];
-    NSString *line6 = [NSString stringWithFormat:@"\n       });"];
-    NSString *line7 = [NSString stringWithFormat:@"\n    }"];
+    NSString *line1 = [NSString stringWithFormat:@"\n- (%@%@ *)%@ {",className,childClass,uName];
+    NSString *line2 = [NSString stringWithFormat:@"\n    if(!%@) {",underLineName];
+    NSString *line4 = [NSString stringWithFormat:@"\n        %@ = [[%@ alloc]init];",underLineName,className];
+    NSString *line5 = [NSString stringWithFormat:@"\n        %@.<#code#>;",underLineName];
+    NSString *line6 = [NSString stringWithFormat:@"\n    }"];
     NSString *line8 = [NSString stringWithFormat:@"\n    return %@;",underLineName];
     NSString *line9 = [NSString stringWithFormat:@"\n}"];
     
-    myResult = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@",line1,line2,line3,line4,line5,line6,line7,line8,line9];
+    myResult = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",line1,line2,line4,line5,line6,line8,line9];
     
     return myResult;
 }
